@@ -1,27 +1,15 @@
 package main
 
 import (
-	"database/sql"
 	"fmt"
 	"log"
-	_"github.com/go-sql-driver/mysql"
+	"net/http"
+	"github.com/gorilla/mux"
 )
 
 func main() {
-	stringConexao := "root:1234@/crud_go?charset=utf8&parseTime=True&loc=Local"
-	
-	db, erro := sql.Open("mysql", stringConexao)
-	if erro != nil {
-		log.Fatal(erro)
-	}
+	router := mux.NewRouter()
 
-	defer db.Close()
-
-	if erro = db.Ping(); erro != nil {
-		log.Fatal(erro)
-	}
-
-	fmt.Println("Conexão está aberta!")
-
-	
+	fmt.Println("Escutando na porta 5000")
+	log.Fatal(http.ListenAndServe(":5000", router))
 }
