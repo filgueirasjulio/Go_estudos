@@ -23,5 +23,5 @@ func main() {
 
 	fmt.Println("Conexão está aberta!")
 
-	linhas, erro := db.Query("select * from usuarios")
+	
 }
