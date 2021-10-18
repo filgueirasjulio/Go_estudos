@@ -1,17 +1,20 @@
 package main
 
 import (
+	"crud/servidor"
 	"fmt"
 	"log"
 	"net/http"
+
 	"github.com/gorilla/mux"
-	"crud/servidor"
 )
 
 func main() {
 	router := mux.NewRouter()
 
 	router.HandleFunc("/usuarios", servidor.CriarUsuario).Methods("POST")
+	router.HandleFunc("/usuarios", servidor.BuscarUsuarios).Methods("GET")
+	router.HandleFunc("/usuarios/{id}", servidor.BuscarUsuario).Methods("GET")
 
 	fmt.Println("Escutando na porta 5000")
 	log.Fatal(http.ListenAndServe(":5000", router))
