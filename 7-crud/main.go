@@ -15,6 +15,8 @@ func main() {
 	router.HandleFunc("/usuarios", servidor.CriarUsuario).Methods("POST")
 	router.HandleFunc("/usuarios", servidor.BuscarUsuarios).Methods("GET")
 	router.HandleFunc("/usuarios/{id}", servidor.BuscarUsuario).Methods("GET")
+	router.HandleFunc("/usuarios/{id}", servidor.AtualizarUsuario).Methods("PUT")
+
 
 	fmt.Println("Escutando na porta 5000")
 	log.Fatal(http.ListenAndServe(":5000", router))
